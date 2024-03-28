@@ -90,8 +90,8 @@
   import { useModal } from '/@/components/Modal';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { useMethods } from '/@/hooks/system/useMethods';
-  import { Api, searchByKeywords, deleteBatchChMajorCategory, queryChMajorCategoryTreeSync } from '../ch_major_category.api';
-  import ChMajorCategoryFormModal from '/@/views/basicData/ch_major_category/components/ChMajorCategoryFormModal.vue';
+  import { Api, searchByKeywords, deleteBatchChMajorCategory, queryChMajorCategoryTreeSync } from '../chMajorCategory.api';
+  import ChMajorCategoryFormModal from '/src/views/basicData/chMajorCategory/components/ChMajorCategoryFormModal.vue';
   import { Popconfirm } from 'ant-design-vue';
 
   const prefixCls = inject('prefixCls');

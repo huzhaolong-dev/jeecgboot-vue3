@@ -85,10 +85,10 @@ export function useBasicFormSchema() {
 // 中国专业分类类型选项
 export const chMajorCategoryTypeOptions = {
   // 一级部门
-  root: [{ value: 1, label: '一级专业分类' }],
+  root: [{ value: '1', label: '一级专业分类' }],
   // 子级部门
   child: [
-    { value: 2, label: '二级专业分类' },
-    { value: 3, label: '专业' },
+    { value: '2', label: '二级专业分类' },
+    { value: '3', label: '专业' },
   ],
 };

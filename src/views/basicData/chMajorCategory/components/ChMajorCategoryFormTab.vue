@@ -13,8 +13,8 @@
 <script lang="ts" setup>
   import { watch, computed, inject, ref, unref, onMounted } from 'vue';
   import { BasicForm, useForm } from '/@/components/Form/index';
-  import { saveOrUpdateChMajorCategory } from '../ch_major_category.api';
-  import { useBasicFormSchema, chMajorCategoryTypeOptions } from '../ch_major_category.data';
+  import { saveOrUpdateChMajorCategory } from '../chMajorCategory.api';
+  import { useBasicFormSchema, chMajorCategoryTypeOptions } from '../chMajorCategory.data';
   import { useDesign } from '/@/hooks/web/useDesign';
 
   const { prefixCls } = useDesign('j-depart-form-content');

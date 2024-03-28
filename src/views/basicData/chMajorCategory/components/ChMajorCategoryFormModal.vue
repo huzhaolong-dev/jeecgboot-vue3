@@ -10,8 +10,8 @@
   import { BasicForm, useForm } from '/@/components/Form/index';
   import { BasicModal, useModalInner } from '/@/components/Modal';
 
-  import { saveOrUpdateChMajorCategory } from '../ch_major_category.api';
-  import { useBasicFormSchema, chMajorCategoryTypeOptions } from '../ch_major_category.data';
+  import { saveOrUpdateChMajorCategory } from '../chMajorCategory.api';
+  import { useBasicFormSchema, chMajorCategoryTypeOptions } from '../chMajorCategory.data';
 
   const emit = defineEmits(['success', 'register']);
   const props = defineProps({

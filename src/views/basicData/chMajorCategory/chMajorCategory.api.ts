@@ -4,14 +4,14 @@ import { useMessage } from '/@/hooks/web/useMessage';
 const { createConfirm } = useMessage();
 
 export enum Api {
-  searchBy = '/basicData/ch_major_category/searchBy',
-  queryDepartTreeSync = '/basicData/ch_major_category/queryChMajorCategoryTreeSync',
-  save = '/basicData/ch_major_category/add',
-  edit = '/basicData/ch_major_category/edit',
-  delete = '/basicData/ch_major_category/delete',
-  deleteBatch = '/basicData/ch_major_category/deleteBatch',
-  exportXlsUrl = '/basicData/ch_major_category/exportXls',
-  importExcelUrl = '/basicData/ch_major_category/importExcel',
+  searchBy = '/basicData/chMajorCategory/searchBy',
+  queryDepartTreeSync = '/basicData/chMajorCategory/queryChMajorCategoryTreeSync',
+  save = '/basicData/chMajorCategory/add',
+  edit = '/basicData/chMajorCategory/edit',
+  delete = '/basicData/chMajorCategory/delete',
+  deleteBatch = '/basicData/chMajorCategory/deleteBatch',
+  exportXlsUrl = '/basicData/chMajorCategory/exportXls',
+  importExcelUrl = '/basicData/chMajorCategory/importExcel',
 }
 
 /**
