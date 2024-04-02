@@ -39,12 +39,12 @@
         </a-col>
         <a-col :span="12">
           <a-form-item label="中国专业分类编码" v-bind="validateInfos.chMajorCategoryCode">
-	          <j-search-select v-model:value="formData.chMajorCategoryCode" dict="ch_major_category,name,code" :disabled="disabled" />
+	          <j-search-select v-model:value="formData.chMajorCategoryCode" dict="ch_major_category where ch_major_category_type = '2',name,code" :disabled="disabled" />
           </a-form-item>
         </a-col>
         <a-col :span="12">
           <a-form-item label="中国专业编码" v-bind="validateInfos.chMajorCode">
-	          <j-search-select v-model:value="formData.chMajorCode" dict="ch_major_category,name,code" :disabled="disabled" />
+	          <j-search-select v-model:value="formData.chMajorCode" dict="ch_major_category where ch_major_category_type = '3',name,code" :disabled="disabled" />
           </a-form-item>
         </a-col>
         <a-col :span="12">
