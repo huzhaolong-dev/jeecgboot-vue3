@@ -18,8 +18,8 @@
           </a-form-item>
         </a-col>
         <a-col :span="12">
-          <a-form-item label="在读年级[first-一年级,second-二年级,third-三年级,forth-四年级,finish-已毕业]" v-bind="validateInfos.grade">
-	          <j-dict-select-tag v-model:value="formData.grade" dictCode="grade" placeholder="请选择在读年级[first-一年级,second-二年级,third-三年级,forth-四年级,finish-已毕业]" :disabled="disabled"/>
+          <a-form-item label="在读年级" v-bind="validateInfos.grade">
+	          <j-dict-select-tag v-model:value="formData.grade" dictCode="grade" placeholder="请选择在读年级" :disabled="disabled"/>
           </a-form-item>
         </a-col>
         <a-col :span="12">
@@ -39,7 +39,7 @@
         </a-col>
         <a-col :span="12">
           <a-form-item label="中国专业分类编码" v-bind="validateInfos.chMajorCategoryCode">
-	          <j-search-select v-model:value="formData.chMajorCategoryCode" dict="ch_major_category where ch_major_category_type = '2',name,code" :disabled="disabled" />
+	          <j-search-select onchange="handelChange" v-model:value="formData.chMajorCategoryCode" dict="ch_major_category where ch_major_category_type = '2',name,code" :disabled="disabled" />
           </a-form-item>
         </a-col>
         <a-col :span="12">
@@ -100,7 +100,7 @@
     name: [{ required: true, message: '请输入名称!'},],
     startDate: [{ required: true, message: '请输入开始时间!'},],
     endDate: [{ required: true, message: '请输入结束时间!'},],
-    grade: [{ required: true, message: '请输入在读年级[first-一年级,second-二年级,third-三年级,forth-四年级,finish-已毕业]!'},],
+    grade: [{ required: true, message: '请输入在读年级!'},],
     content: [{ required: true, message: '请输入内容!'},],
     chUniversityCode: [{ required: true, message: '请输入中国大学编码!'},],
     chMajorCategoryCode: [{ required: true, message: '请输入中国专业分类编码!'},],
@@ -114,7 +114,11 @@
     labelCol: { xs: { span: 24 }, sm: { span: 5 } },
     wrapperCol: { xs: { span: 24 }, sm: { span: 16 } },
   };
-  
+
+  function handelChange(value) {
+      props.chMajorCodeSearchCondition = "and pcode = " + value;
+  }
+
   /**
    * 新增
    */

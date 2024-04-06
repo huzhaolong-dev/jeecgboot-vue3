@@ -13,8 +13,8 @@
           </a-form-item>
         </a-col>
         <a-col :span="12">
-          <a-form-item label="材料类型[1-身份证明材料,2-学科成绩证明材料,3-语言证明材料,4-学校活动证明材料,5-资金证明材料]" v-bind="validateInfos.materialType">
-	          <j-dict-select-tag v-model:value="formData.materialType" dictCode="material_type" placeholder="请选择材料类型[1-身份证明材料,2-学科成绩证明材料,3-语言证明材料,4-学校活动证明材料,5-资金证明材料]" :disabled="disabled"/>
+          <a-form-item label="材料类型" v-bind="validateInfos.materialType">
+	          <j-dict-select-tag v-model:value="formData.materialType" dictCode="material_type" placeholder="请选择材料类型" :disabled="disabled"/>
           </a-form-item>
         </a-col>
         <a-col :span="12">
@@ -28,8 +28,8 @@
           </a-form-item>
         </a-col>
         <a-col :span="12">
-          <a-form-item label="审核状态[wait-待审核,pass-通过,fail-未通过]" v-bind="validateInfos.auditStatus">
-	          <j-dict-select-tag v-model:value="formData.auditStatus" dictCode="audit_status" placeholder="请选择审核状态[wait-待审核,pass-通过,fail-未通过]" :disabled="disabled"/>
+          <a-form-item label="审核状态" v-bind="validateInfos.auditStatus">
+	          <j-dict-select-tag v-model:value="formData.auditStatus" dictCode="audit_status" placeholder="请选择审核状态" :disabled="disabled"/>
           </a-form-item>
         </a-col>
         <a-col :span="12">
@@ -81,10 +81,10 @@
   const validatorRules = {
     name: [{ required: true, message: '请输入名称!'},],
     materiaUrl: [{ required: true, message: '请输入材料Url地址!'},],
-    materialType: [{ required: true, message: '请输入材料类型[1-身份证明材料,2-学科成绩证明材料,3-语言证明材料,4-学校活动证明材料,5-资金证明材料]!'},],
+    materialType: [{ required: true, message: '请输入材料类型!'},],
     materialSuffix: [{ required: true, message: '请输入材料后缀!'},],
     size: [{ required: true, message: '请输入大小，单位：字节!'},],
-    auditStatus: [{ required: true, message: '请输入审核状态[wait-待审核,pass-通过,fail-未通过]!'},],
+    auditStatus: [{ required: true, message: '请输入审核状态!'},],
   };
   const { resetFields, validate, validateInfos } = useForm(formData, validatorRules, { immediate: false });
   const props = defineProps({
