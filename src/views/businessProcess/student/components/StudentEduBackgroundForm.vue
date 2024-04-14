@@ -39,12 +39,12 @@
         </a-col>
         <a-col :span="12">
           <a-form-item label="中国专业分类编码" v-bind="validateInfos.chMajorCategoryCode">
-	          <j-search-select onchange="handelChange" v-model:value="formData.chMajorCategoryCode" dict="ch_major_category where ch_major_category_type = '2',name,code" :disabled="disabled" />
+	          <j-search-select onchange="handelChange(value)" v-model:value="formData.chMajorCategoryCode" dict="ch_major_category where ch_major_category_type = '2',name,code" :disabled="disabled" />
           </a-form-item>
         </a-col>
         <a-col :span="12">
           <a-form-item label="中国专业编码" v-bind="validateInfos.chMajorCode">
-	          <j-search-select v-model:value="formData.chMajorCode" dict="ch_major_category where ch_major_category_type = '3',name,code" :disabled="disabled" />
+	          <j-search-select v-model:value="formData.chMajorCode" dict="{{chMajorCodeDictStr}}" async=false :disabled="disabled" />
           </a-form-item>
         </a-col>
         <a-col :span="12">
@@ -109,14 +109,20 @@
   const { resetFields, validate, validateInfos } = useForm(formData, validatorRules, { immediate: false });
   const props = defineProps({
     disabled: { type: Boolean, default: false },
+    chMajorCodeDictStr: { type: String, default: false },
   });
   const formItemLayout = {
     labelCol: { xs: { span: 24 }, sm: { span: 5 } },
     wrapperCol: { xs: { span: 24 }, sm: { span: 16 } },
   };
+  const chMajorCodeDictStr = ref<string>("ch_major_category where ch_major_category_type = '3',name,code");
 
   function handelChange(value) {
-      props.chMajorCodeSearchCondition = "and pcode = " + value;
+    if(value) {
+      chMajorCodeDictStr.value = "ch_major_category where ch_major_category_type = '3' and pcode = " + value + ",name,code";
+    } else {
+      chMajorCodeDictStr.value = "ch_major_category where ch_major_category_type = '3',name,code";
+    }
   }
 
   /**

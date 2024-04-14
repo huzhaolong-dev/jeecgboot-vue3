@@ -53,6 +53,7 @@
     props: {
       value: propTypes.oneOfType([propTypes.string, propTypes.number]),
       dict: propTypes.string,
+      pcode: propTypes.string,
       dictOptions: {
         type: Array,
         default: () => [],
