@@ -41,14 +41,14 @@
 
 <script lang="ts">
   import { useDebounceFn } from '@vueuse/core';
-  import { defineComponent, PropType, ref, reactive, watchEffect, computed, unref, watch, onMounted } from 'vue';
+  import {defineComponent, PropType, ref, reactive, watchEffect, computed, unref, watch, onMounted } from 'vue';
   import { propTypes } from '/@/utils/propTypes';
   import { useAttrs } from '/@/hooks/core/useAttrs';
   import { initDictOptions } from '/@/utils/dict/index';
   import { defHttp } from '/@/utils/http/axios';
 
   export default defineComponent({
-    name: 'JSearchSelect',
+    name: 'JSearchSelectChMajor',
     inheritAttrs: false,
     props: {
       value: propTypes.oneOfType([propTypes.string, propTypes.number]),
@@ -106,6 +106,22 @@
        */
       watch(() => props.dict, () => {
         if (!props.dict) {
+          return
+        }
+        if (isDictTable.value) {
+          initDictTableData();
+        } else {
+          initDictCodeData();
+        }
+      }, {immediate: true});
+
+      /**
+       * 监听字典pcode
+       */
+      watch(() => props.pcode, (newValue, oldValue) => {
+        console.log("newValue:" + newValue);
+        console.log("oldValue:" + oldValue);
+        if (!props.pcode) {
           return
         }
         if (isDictTable.value) {
@@ -212,7 +228,7 @@
        * 初始化字典下拉数据
        */
       async function initDictTableData() {
-        let { dict, async, dictOptions, pageSize } = props;
+        let { dict, pcode, async, dictOptions, pageSize } = props;
         if (!async) {
           //如果字典项集合有数据
           if (dictOptions && dictOptions.length > 0) {
@@ -224,9 +240,17 @@
               let arr = dict.split(',');
               if (arr[0].indexOf('where') > 0) {
                 let tbInfo = arr[0].split('where');
-                dictStr = tbInfo[0].trim() + ',' + arr[1] + ',' + arr[2] + ',' + encodeURIComponent(tbInfo[1]);
+                if (pcode && pcode != '') {
+                  dictStr = tbInfo[0].trim() + ',' + arr[1] + ',' + arr[2] + ',' + encodeURIComponent(tbInfo[1] + ' and pcode = ' + pcode);
+                } else {
+                  dictStr = tbInfo[0].trim() + ',' + arr[1] + ',' + arr[2] + ',' + encodeURIComponent(tbInfo[1]);
+                }
               } else {
-                dictStr = dict;
+                if (pcode && pcode != '') {
+                  dictStr = dict + ',' + encodeURIComponent('pcode = ' + pcode);
+                } else {
+                  dictStr = dict;
+                }
               }
               //根据字典Code, 初始化字典数组
               const dictData = await initDictOptions(dictStr);
