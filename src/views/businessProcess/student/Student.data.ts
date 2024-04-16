@@ -5,7 +5,7 @@ import { render } from '/@/utils/common/renderUtils';
 //列表数据
 export const columns: BasicColumn[] = [
   {
-    title: '身份类型[1-身份证,2-护照]',
+    title: '身份类型',
     align:"center",
     dataIndex: 'idType_dictText'
   },
@@ -25,18 +25,18 @@ export const columns: BasicColumn[] = [
     dataIndex: 'pinyin'
   },
   {
-    title: '性别[1-男,2-女]',
+    title: '性别',
     align:"center",
     dataIndex: 'sex_dictText'
   },
   {
-    title: '头像Url地址',
+    title: '头像',
     align:"center",
     dataIndex: 'avatarUrl',
     customRender:render.renderImage,
   },
   {
-    title: '学业阶段[1-本科在读,2-专科在读,3-本科毕业,4-专科毕业,5-研究生在读,6-研究生毕业,7-普通高中在读,8-国际高中在读]',
+    title: '学业阶段',
     align:"center",
     dataIndex: 'studyStage_dictText'
   },
@@ -102,7 +102,7 @@ export const searchFormSchema: FormSchema[] = [
 //表单数据
 export const formSchema: FormSchema[] = [
   {
-    label: '身份类型[1-身份证,2-护照]',
+    label: '身份类型',
     field: 'idType',
     component: 'JDictSelectTag',
     componentProps:{
@@ -110,7 +110,7 @@ export const formSchema: FormSchema[] = [
     },
     dynamicRules: ({model,schema}) => {
       return [
-        { required: true, message: '请输入身份类型[1-身份证,2-护照]!'},
+        { required: true, message: '请输入身份类型!'},
       ];
      },
   },
@@ -145,7 +145,7 @@ export const formSchema: FormSchema[] = [
      },
   },
   {
-    label: '性别[1-男,2-女]',
+    label: '性别',
     field: 'sex',
     component: 'JDictSelectTag',
     componentProps:{
@@ -153,24 +153,24 @@ export const formSchema: FormSchema[] = [
     },
     dynamicRules: ({model,schema}) => {
       return [
-        { required: true, message: '请输入性别[1-男,2-女]!'},
+        { required: true, message: '请输入性别!'},
       ];
      },
   },
   {
-    label: '头像Url地址',
+    label: '头像',
     field: 'avatarUrl',
     component: 'JImageUpload',
     componentProps:{
     },
     dynamicRules: ({model,schema}) => {
       return [
-        { required: true, message: '请输入头像Url地址!'},
+        { required: true, message: '请输入头像!'},
       ];
      },
   },
   {
-    label: '学业阶段[1-本科在读,2-专科在读,3-本科毕业,4-专科毕业,5-研究生在读,6-研究生毕业,7-普通高中在读,8-国际高中在读]',
+    label: '学业阶段',
     field: 'studyStage',
     component: 'JDictSelectTag',
     componentProps:{
@@ -178,7 +178,7 @@ export const formSchema: FormSchema[] = [
     },
     dynamicRules: ({model,schema}) => {
       return [
-        { required: true, message: '请输入学业阶段[1-本科在读,2-专科在读,3-本科毕业,4-专科毕业,5-研究生在读,6-研究生毕业,7-普通高中在读,8-国际高中在读]!'},
+        { required: true, message: '请输入学业阶段!'},
       ];
      },
   },
@@ -373,7 +373,7 @@ export const studentEduBackgroundColumns: BasicColumn[] = [
     },
   },
   {
-    title: '在读年级[first-一年级,second-二年级,third-三年级,forth-四年级,finish-已毕业]',
+    title: '在读年级',
     align:"center",
     dataIndex: 'grade_dictText'
   },
@@ -443,7 +443,7 @@ export const studentEduBackgroundFormSchema: FormSchema[] = [
     },
   },
   {
-    label: '在读年级[first-一年级,second-二年级,third-三年级,forth-四年级,finish-已毕业]',
+    label: '在读年级',
     field: 'grade',
     component: 'JDictSelectTag',
     componentProps:{
@@ -451,7 +451,7 @@ export const studentEduBackgroundFormSchema: FormSchema[] = [
     },
     dynamicRules: ({model,schema}) => {
       return [
-        { required: true, message: '请输入在读年级[first-一年级,second-二年级,third-三年级,forth-四年级,finish-已毕业]!'},
+        { required: true, message: '请输入在读年级!'},
       ];
     },
   },
@@ -642,12 +642,12 @@ export const studentMaterialColumns: BasicColumn[] = [
     dataIndex: 'name'
   },
   {
-    title: '材料Url地址',
+    title: '材料',
     align:"center",
     dataIndex: 'materiaUrl',
   },
   {
-    title: '材料类型[1-身份证明材料,2-学科成绩证明材料,3-语言证明材料,4-学校活动证明材料,5-资金证明材料]',
+    title: '材料类型',
     align:"center",
     dataIndex: 'materialType_dictText'
   },
@@ -662,7 +662,7 @@ export const studentMaterialColumns: BasicColumn[] = [
     dataIndex: 'size'
   },
   {
-    title: '审核状态[wait-待审核,pass-通过,fail-未通过]',
+    title: '审核状态',
     align:"center",
     dataIndex: 'auditStatus_dictText'
   },
@@ -697,14 +697,14 @@ export const studentMaterialFormSchema: FormSchema[] = [
     },
   },
   {
-    label: '材料Url地址',
+    label: '材料',
     field: 'materiaUrl',
     component: 'JUpload',
     componentProps:{
      },
     dynamicRules: ({model,schema}) => {
       return [
-        { required: true, message: '请输入材料Url地址!'},
+        { required: true, message: '请输入材料!'},
       ];
     },
   },
@@ -743,7 +743,7 @@ export const studentMaterialFormSchema: FormSchema[] = [
     dynamicDisabled:true,
   },
   {
-    label: '审核状态[wait-待审核,pass-通过,fail-未通过]',
+    label: '审核状态',
     field: 'auditStatus',
     defaultValue: "wait",
     component: 'JDictSelectTag',
@@ -752,7 +752,7 @@ export const studentMaterialFormSchema: FormSchema[] = [
     },
     dynamicRules: ({model,schema}) => {
       return [
-        { required: true, message: '请输入审核状态[wait-待审核,pass-通过,fail-未通过]!'},
+        { required: true, message: '请输入审核状态!'},
       ];
     },
   },
@@ -770,13 +770,13 @@ export const studentMaterialFormSchema: FormSchema[] = [
 
 // 高级查询数据
 export const superQuerySchema = {
-  idType: {title: '身份类型[1-身份证,2-护照]',order: 0,view: 'list', type: 'string',dictCode: 'id_type',},
+  idType: {title: '身份类型',order: 0,view: 'list', type: 'string',dictCode: 'id_type',},
   idCard: {title: '身份证号码',order: 1,view: 'text', type: 'string',},
   name: {title: '名称',order: 2,view: 'text', type: 'string',},
   pinyin: {title: '拼音',order: 3,view: 'text', type: 'string',},
-  sex: {title: '性别[1-男,2-女]',order: 4,view: 'radio', type: 'string',},
-  avatarUrl: {title: '头像Url地址',order: 5,view: 'image', type: 'string',},
-  studyStage: {title: '学业阶段[1-本科在读,2-专科在读,3-本科毕业,4-专科毕业,5-研究生在读,6-研究生毕业,7-普通高中在读,8-国际高中在读]',order: 6,view: 'list', type: 'string',dictCode: 'study_stage',},
+  sex: {title: '性别',order: 4,view: 'radio', type: 'string',},
+  avatarUrl: {title: '头像',order: 5,view: 'image', type: 'string',},
+  studyStage: {title: '学业阶段',order: 6,view: 'list', type: 'string',dictCode: 'study_stage',},
   birthday: {title: '出生日期',order: 7,view: 'date', type: 'string',},
   registrationAddr: {title: '户口地',order: 8,view: 'text', type: 'string',},
   birthplaceAddr: {title: '出生地',order: 9,view: 'text', type: 'string',},

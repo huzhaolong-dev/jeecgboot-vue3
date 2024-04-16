@@ -3,8 +3,8 @@
     <a-form ref="formRef" class="antd-modal-form" :labelCol="labelCol" :wrapperCol="wrapperCol">
       <a-row>
         <a-col :span="12">
-          <a-form-item label="身份类型[1-身份证,2-护照]" v-bind="validateInfos.idType">
-	          <j-dict-select-tag v-model:value="formData.idType" dictCode="id_type" placeholder="请选择身份类型[1-身份证,2-护照]" :disabled="disabled"/>
+          <a-form-item label="身份类型" v-bind="validateInfos.idType">
+	          <j-dict-select-tag v-model:value="formData.idType" dictCode="id_type" placeholder="请选择身份类型" :disabled="disabled"/>
           </a-form-item>
         </a-col>
         <a-col :span="12">
@@ -23,18 +23,18 @@
           </a-form-item>
         </a-col>
         <a-col :span="12">
-          <a-form-item label="性别[1-男,2-女]" v-bind="validateInfos.sex">
-            <j-dict-select-tag type='radio' v-model:value="formData.sex" dictCode="sex" placeholder="请选择性别[1-男,2-女]" :disabled="disabled"/>
+          <a-form-item label="性别" v-bind="validateInfos.sex">
+            <j-dict-select-tag type='radio' v-model:value="formData.sex" dictCode="sex" placeholder="请选择性别" :disabled="disabled"/>
           </a-form-item>
         </a-col>
         <a-col :span="12">
-          <a-form-item label="头像Url地址" v-bind="validateInfos.avatarUrl">
+          <a-form-item label="头像" v-bind="validateInfos.avatarUrl">
 	          <j-image-upload  v-model:value="formData.avatarUrl" :disabled="disabled"></j-image-upload>
           </a-form-item>
         </a-col>
         <a-col :span="12">
-          <a-form-item label="学业阶段[1-本科在读,2-专科在读,3-本科毕业,4-专科毕业,5-研究生在读,6-研究生毕业,7-普通高中在读,8-国际高中在读]" v-bind="validateInfos.studyStage">
-	          <j-dict-select-tag v-model:value="formData.studyStage" dictCode="study_stage" placeholder="请选择学业阶段[1-本科在读,2-专科在读,3-本科毕业,4-专科毕业,5-研究生在读,6-研究生毕业,7-普通高中在读,8-国际高中在读]" :disabled="disabled"/>
+          <a-form-item label="学业阶段" v-bind="validateInfos.studyStage">
+	          <j-dict-select-tag v-model:value="formData.studyStage" dictCode="study_stage" placeholder="请选择学业阶段" :disabled="disabled"/>
           </a-form-item>
         </a-col>
         <a-col :span="12">
@@ -129,13 +129,13 @@
   const confirmLoading = ref<boolean>(false);
   //表单验证
   const validatorRules = {
-    idType: [{ required: true, message: '请输入身份类型[1-身份证,2-护照]!'},],
+    idType: [{ required: true, message: '请输入身份类型!'},],
     idCard: [{ required: true, message: '请输入身份证号码!'},],
     name: [{ required: true, message: '请输入名称!'},],
     pinyin: [{ required: true, message: '请输入拼音!'},],
-    sex: [{ required: true, message: '请输入性别[1-男,2-女]!'},],
-    avatarUrl: [{ required: true, message: '请输入头像Url地址!'},],
-    studyStage: [{ required: true, message: '请输入学业阶段[1-本科在读,2-专科在读,3-本科毕业,4-专科毕业,5-研究生在读,6-研究生毕业,7-普通高中在读,8-国际高中在读]!'},],
+    sex: [{ required: true, message: '请输入性别!'},],
+    avatarUrl: [{ required: true, message: '请输入头像!'},],
+    studyStage: [{ required: true, message: '请输入学业阶段!'},],
     birthday: [{ required: true, message: '请输入出生日期!'},],
     telephone: [{ required: true, message: '请输入手机!'},],
     emergencyPhone: [{ required: true, message: '请输入紧急联系人手机!'},],

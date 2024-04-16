@@ -8,7 +8,7 @@
           </a-form-item>
         </a-col>
         <a-col :span="12">
-          <a-form-item label="材料Url地址" v-bind="validateInfos.materiaUrl">
+          <a-form-item label="材料" v-bind="validateInfos.materiaUrl">
 	          <j-upload v-model:value="formData.materiaUrl"  :disabled="disabled" ></j-upload>
           </a-form-item>
         </a-col>
@@ -19,7 +19,7 @@
         </a-col>
         <a-col :span="12">
           <a-form-item label="材料后缀" v-bind="validateInfos.materialSuffix">
-            <a-input v-model:value="formData.materialSuffix" placeholder="请输入材料后缀" :disabled="disabled"></a-input>
+            <a-input v-model:value="formData.materialSuffix" placeholder="请输入材料后缀" disabled></a-input>
           </a-form-item>
         </a-col>
         <a-col :span="12">
@@ -80,7 +80,7 @@
   //表单验证
   const validatorRules = {
     name: [{ required: true, message: '请输入名称!'},],
-    materiaUrl: [{ required: true, message: '请输入材料Url地址!'},],
+    materiaUrl: [{ required: true, message: '请输入材料!'},],
     materialType: [{ required: true, message: '请输入材料类型!'},],
     materialSuffix: [{ required: true, message: '请输入材料后缀!'},],
     size: [{ required: true, message: '请输入大小，单位：字节!'},],
