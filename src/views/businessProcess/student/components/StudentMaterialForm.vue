@@ -9,7 +9,7 @@
         </a-col>
         <a-col :span="12">
           <a-form-item label="材料" v-bind="validateInfos.materiaUrl">
-	          <j-upload v-model:value="formData.materiaUrl"  :disabled="disabled" ></j-upload>
+	          <j-upload v-model:value="formData.materiaUrl"  maxCount=1 :disabled="disabled" ></j-upload>
           </a-form-item>
         </a-col>
         <a-col :span="12">
@@ -80,11 +80,11 @@
   //表单验证
   const validatorRules = {
     name: [{ required: true, message: '请输入名称!'},],
-    materiaUrl: [{ required: true, message: '请输入材料!'},],
-    materialType: [{ required: true, message: '请输入材料类型!'},],
+    materiaUrl: [{ required: true, message: '请上传材料!'},],
+    materialType: [{ required: true, message: '请选择材料类型!'},],
     materialSuffix: [{ required: true, message: '请输入材料后缀!'},],
     size: [{ required: true, message: '请输入大小，单位：字节!'},],
-    auditStatus: [{ required: true, message: '请输入审核状态!'},],
+    auditStatus: [{ required: true, message: '请选择审核状态!'},],
   };
   const { resetFields, validate, validateInfos } = useForm(formData, validatorRules, { immediate: false });
   const props = defineProps({

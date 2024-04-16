@@ -704,12 +704,12 @@ export const studentMaterialFormSchema: FormSchema[] = [
      },
     dynamicRules: ({model,schema}) => {
       return [
-        { required: true, message: '请输入材料!'},
+        { required: true, message: '请上传材料!'},
       ];
     },
   },
   {
-    label: '材料类型[1-身份证明材料,2-学科成绩证明材料,3-语言证明材料,4-学校活动证明材料,5-资金证明材料]',
+    label: '材料类型',
     field: 'materialType',
     component: 'JDictSelectTag',
     componentProps:{
@@ -717,7 +717,7 @@ export const studentMaterialFormSchema: FormSchema[] = [
     },
     dynamicRules: ({model,schema}) => {
       return [
-        { required: true, message: '请输入材料类型[1-身份证明材料,2-学科成绩证明材料,3-语言证明材料,4-学校活动证明材料,5-资金证明材料]!'},
+        { required: true, message: '请选择材料类型!'},
       ];
     },
   },
