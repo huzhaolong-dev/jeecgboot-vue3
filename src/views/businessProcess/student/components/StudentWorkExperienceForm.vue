@@ -24,12 +24,12 @@
         </a-col>
         <a-col :span="12">
           <a-form-item label="内容" v-bind="validateInfos.content">
-	          <a-textarea v-model:value="formData.content" :rows="4" placeholder="请输入内容" :disabled="disabled"/>
+	          <a-textarea v-model:value="formData.content" :rows="4" placeholder="提示：可以填写工作期间负责项目的业务介绍、人员分工、遇到的难点、如何解决的过程以及自我感受等" :disabled="disabled"/>
           </a-form-item>
         </a-col>
         <a-col :span="12">
           <a-form-item label="成果" v-bind="validateInfos.results">
-	          <a-textarea v-model:value="formData.results" :rows="4" placeholder="请输入成果" :disabled="disabled"/>
+	          <a-textarea v-model:value="formData.results" :rows="4" placeholder="提示：可以填写工作期间完成的工作量或实现的目标等" :disabled="disabled"/>
           </a-form-item>
         </a-col>
         <a-col :span="12">

@@ -24,12 +24,12 @@
         </a-col>
         <a-col :span="12">
           <a-form-item label="内容" v-bind="validateInfos.content">
-	          <a-textarea v-model:value="formData.content" :rows="4" placeholder="请输入内容" :disabled="disabled"/>
+	          <a-textarea v-model:value="formData.content" :rows="4" placeholder="提示：可以填写教育期间自我成长的表现、经历、感受等" :disabled="disabled"/>
           </a-form-item>
         </a-col>
         <a-col :span="12">
           <a-form-item label="成果" v-bind="validateInfos.results">
-	          <a-textarea v-model:value="formData.results" :rows="4" placeholder="请输入成果" :disabled="disabled"/>
+	          <a-textarea v-model:value="formData.results" :rows="4" placeholder="提示：可以填写教育期间获得的奖项、输出的论文、作品集等可以量化的成果等" :disabled="disabled"/>
           </a-form-item>
         </a-col>
         <a-col :span="12">
