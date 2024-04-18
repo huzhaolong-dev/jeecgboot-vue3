@@ -56,18 +56,18 @@
       </template>
     </BasicTable>
     <!-- 表单区域 -->
-    <ChUniversityModal ref="registerModal" @success="handleSuccess"></ChUniversityModal>
+    <UniversityModal ref="registerModal" @success="handleSuccess"></UniversityModal>
   </div>
 </template>
 
-<script lang="ts" name="basicData-chUniversity" setup>
+<script lang="ts" name="basicData-university" setup>
   import { ref, reactive } from 'vue';
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
   import { useListPage } from '/@/hooks/system/useListPage';
-  import { columns, superQuerySchema } from './ChUniversity.data';
-  import { list, deleteOne, batchDelete, getImportUrl, getExportUrl } from './ChUniversity.api';
+  import { columns, superQuerySchema } from './University.data';
+  import { list, deleteOne, batchDelete, getImportUrl, getExportUrl } from './University.api';
   import { downloadFile } from '/@/utils/common/renderUtils';
-  import ChUniversityModal from './components/ChUniversityModal.vue'
+  import UniversityModal from './components/UniversityModal.vue'
   import { useUserStore } from '/@/store/modules/user';
 
   const formRef = ref();
@@ -78,7 +78,7 @@
   //注册table数据
   const { prefixCls, tableContext, onExportXls, onImportXls } = useListPage({
     tableProps: {
-      title: 'ch_university',
+      title: 'university',
       api: list,
       columns,
       canResize:false,
@@ -92,7 +92,7 @@
       },
     },
     exportConfig: {
-      name: "ch_university",
+      name: "university",
       url: getExportUrl,
       params: queryParam,
     },

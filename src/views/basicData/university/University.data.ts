@@ -36,28 +36,15 @@ export const columns: BasicColumn[] = [
     dataIndex: 'webUrl'
   },
   {
-    title: '985学校标志[0-不是,1-是]',
-    align: "center",
-    dataIndex: 'nineEightFiveCollegeFlag_dictText'
-  },
-  {
-    title: '211学校标志[0-不是,1-是]',
-    align: "center",
-    dataIndex: 'twoElevenCollegeFlag_dictText'
-  },
-  {
-    title: '双一流学校标志[0-不是,1-是]',
-    align: "center",
-    dataIndex: 'doubleFirstClassCollegeFlag_dictText'
-  },
-  {
     title: 'QS世界排名',
     align: "center",
+    sorter: true,
     dataIndex: 'qsWorldRank'
   },
   {
     title: 'QS国家排名',
     align: "center",
+    sorter: true,
     dataIndex: 'qsCountryRank'
   },
   {
@@ -126,7 +113,6 @@ export const formSchema: FormSchema[] = [
               { required: true, message: '请输入国家编码!'},
              ];
     },
-    dynamicDisabled: true
   },
   {
     label: '图片Url地址',
@@ -139,45 +125,6 @@ export const formSchema: FormSchema[] = [
     label: '网站Url地址',
     field: 'webUrl',
     component: 'Input',
-  },
-  {
-    label: '985学校标志[0-不是,1-是]',
-    field: 'nineEightFiveCollegeFlag',
-    component: 'JDictSelectTag',
-    componentProps:{
-      dictCode: "nine_eight_five_college_flag"
-    },
-    dynamicRules: ({model,schema}) => {
-      return [
-              { required: true, message: '请输入985学校标志[0-不是,1-是]!'},
-             ];
-    },
-  },
-  {
-    label: '211学校标志[0-不是,1-是]',
-    field: 'twoElevenCollegeFlag',
-    component: 'JDictSelectTag',
-    componentProps:{
-      dictCode: "two_eleven_college_flag"
-    },
-    dynamicRules: ({model,schema}) => {
-      return [
-              { required: true, message: '请输入211学校标志[0-不是,1-是]!'},
-             ];
-    },
-  },
-  {
-    label: '双一流学校标志[0-不是,1-是]',
-    field: 'doubleFirstClassCollegeFlag',
-    component: 'JDictSelectTag',
-    componentProps:{
-      dictCode: "double_first_class_college_flag"
-    },
-    dynamicRules: ({model,schema}) => {
-      return [
-              { required: true, message: '请输入双一流学校标志[0-不是,1-是]!'},
-             ];
-    },
   },
   {
     label: 'QS世界排名',
@@ -226,11 +173,8 @@ export const superQuerySchema = {
   countryCode: {title: '国家编码',order: 3,view: 'list', type: 'string',dictTable: "country", dictCode: 'code', dictText: 'name',},
   picUrl: {title: '图片Url地址',order: 4,view: 'image', type: 'string',},
   webUrl: {title: '网站Url地址',order: 5,view: 'text', type: 'string',},
-  nineEightFiveCollegeFlag: {title: '985学校标志[0-不是,1-是]',order: 6,view: 'radio', type: 'string',},
-  twoElevenCollegeFlag: {title: '211学校标志[0-不是,1-是]',order: 7,view: 'radio', type: 'string',},
-  doubleFirstClassCollegeFlag: {title: '双一流学校标志[0-不是,1-是]',order: 8,view: 'radio', type: 'string',},
-  qsWorldRank: {title: 'QS世界排名',order: 9,view: 'number', type: 'number',},
-  qsCountryRank: {title: 'QS国家排名',order: 10,view: 'number', type: 'number',},
-  description: {title: '描述',order: 11,view: 'text', type: 'string',},
-  remark: {title: '备注',order: 12,view: 'text', type: 'string',},
+  qsWorldRank: {title: 'QS世界排名',order: 6,view: 'number', type: 'number',},
+  qsCountryRank: {title: 'QS国家排名',order: 7,view: 'number', type: 'number',},
+  description: {title: '描述',order: 8,view: 'text', type: 'string',},
+  remark: {title: '备注',order: 9,view: 'text', type: 'string',},
 };

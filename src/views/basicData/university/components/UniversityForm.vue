@@ -19,7 +19,7 @@
         </a-col>
         <a-col :span="24">
           <a-form-item label="国家编码" v-bind="validateInfos.countryCode">
-	          <j-dict-select-tag v-model:value="formData.countryCode" dictCode="country,name,code" placeholder="请选择国家编码" disabled/>
+	          <j-dict-select-tag v-model:value="formData.countryCode" dictCode="country,name,code" placeholder="请选择国家编码" :disabled="disabled"/>
           </a-form-item>
         </a-col>
         <a-col :span="24">
@@ -30,21 +30,6 @@
         <a-col :span="24">
           <a-form-item label="网站Url地址" v-bind="validateInfos.webUrl">
             <a-input v-model:value="formData.webUrl" placeholder="请输入网站Url地址" :disabled="disabled"></a-input>
-          </a-form-item>
-        </a-col>
-        <a-col :span="24">
-          <a-form-item label="985学校标志[0-不是,1-是]" v-bind="validateInfos.nineEightFiveCollegeFlag">
-            <j-dict-select-tag type='radio' v-model:value="formData.nineEightFiveCollegeFlag" dictCode="nine_eight_five_college_flag" placeholder="请选择985学校标志[0-不是,1-是]" :disabled="disabled"/>
-          </a-form-item>
-        </a-col>
-        <a-col :span="24">
-          <a-form-item label="211学校标志[0-不是,1-是]" v-bind="validateInfos.twoElevenCollegeFlag">
-            <j-dict-select-tag type='radio' v-model:value="formData.twoElevenCollegeFlag" dictCode="two_eleven_college_flag" placeholder="请选择211学校标志[0-不是,1-是]" :disabled="disabled"/>
-          </a-form-item>
-        </a-col>
-        <a-col :span="24">
-          <a-form-item label="双一流学校标志[0-不是,1-是]" v-bind="validateInfos.doubleFirstClassCollegeFlag">
-            <j-dict-select-tag type='radio' v-model:value="formData.doubleFirstClassCollegeFlag" dictCode="double_first_class_college_flag" placeholder="请选择双一流学校标志[0-不是,1-是]" :disabled="disabled"/>
           </a-form-item>
         </a-col>
         <a-col :span="24">
@@ -79,7 +64,7 @@
   import JDictSelectTag from '/@/components/Form/src/jeecg/components/JDictSelectTag.vue';
   import JImageUpload from '/@/components/Form/src/jeecg/components/JImageUpload.vue';
   import { getValueType } from '/@/utils';
-  import { saveOrUpdate } from '../ChUniversity.api';
+  import { saveOrUpdate } from '../University.api';
   import { Form } from 'ant-design-vue';
   
   const props = defineProps({
@@ -98,9 +83,6 @@
     countryCode: '',   
     picUrl: '',   
     webUrl: '',   
-    nineEightFiveCollegeFlag: '',   
-    twoElevenCollegeFlag: '',   
-    doubleFirstClassCollegeFlag: '',   
     qsWorldRank: undefined,
     qsCountryRank: undefined,
     description: '',   
@@ -116,9 +98,6 @@
     name: [{ required: true, message: '请输入名称!'},],
     chName: [{ required: true, message: '请输入中文名称!'},],
     countryCode: [{ required: true, message: '请输入国家编码!'},],
-    nineEightFiveCollegeFlag: [{ required: true, message: '请输入985学校标志[0-不是,1-是]!'},],
-    twoElevenCollegeFlag: [{ required: true, message: '请输入211学校标志[0-不是,1-是]!'},],
-    doubleFirstClassCollegeFlag: [{ required: true, message: '请输入双一流学校标志[0-不是,1-是]!'},],
     qsWorldRank: [{ required: true, message: '请输入QS世界排名!'},],
     qsCountryRank: [{ required: true, message: '请输入QS国家排名!'},],
   };
