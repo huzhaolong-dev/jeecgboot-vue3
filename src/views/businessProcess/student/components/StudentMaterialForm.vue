@@ -3,18 +3,18 @@
     <a-form class="antd-modal-form" v-bind="formItemLayout" ref="formRef">
       <a-row>
         <a-col :span="12">
-          <a-form-item label="名称" v-bind="validateInfos.name">
-            <a-input v-model:value="formData.name" placeholder="请输入名称" :disabled="disabled"></a-input>
+          <a-form-item label="材料类型" v-bind="validateInfos.materialType">
+            <j-dict-select-tag v-model:value="formData.materialType" dictCode="material_type" placeholder="请选择材料类型" :disabled="disabled"/>
           </a-form-item>
         </a-col>
         <a-col :span="12">
           <a-form-item label="材料" v-bind="validateInfos.materiaUrl">
-	          <j-upload v-model:value="formData.materiaUrl"  maxCount=1 :disabled="disabled" ></j-upload>
+	          <j-upload @change=handelChange v-model:value="formData.materiaUrl" :maxCount=1 :returnUrl=false :disabled="disabled" ></j-upload>
           </a-form-item>
         </a-col>
         <a-col :span="12">
-          <a-form-item label="材料类型" v-bind="validateInfos.materialType">
-	          <j-dict-select-tag v-model:value="formData.materialType" dictCode="material_type" placeholder="请选择材料类型" :disabled="disabled"/>
+          <a-form-item label="名称" v-bind="validateInfos.name">
+            <a-input v-model:value="formData.name" placeholder="请输入名称" :disabled="disabled"></a-input>
           </a-form-item>
         </a-col>
         <a-col :span="12">
@@ -56,6 +56,7 @@
   import { getValueType } from '/@/utils';
   import { studentMaterialSaveOrUpdate } from '../Student.api';
   import { Form } from 'ant-design-vue';
+  import {propTypes} from "@/utils/propTypes";
 
   //接收主表id
   const mainId = inject('mainId');
@@ -64,7 +65,7 @@
   const emit = defineEmits(['register', 'ok']);
   const formData = reactive<Record<string, any>>({
     id: '',
-        name: '',   
+        name: '',
         materiaUrl: '',   
         materialType: '',   
         materialSuffix: '',   
@@ -94,7 +95,20 @@
     labelCol: { xs: { span: 24 }, sm: { span: 5 } },
     wrapperCol: { xs: { span: 24 }, sm: { span: 16 } },
   };
-  
+
+  /**
+   * change
+   */
+  function handelChange() {
+    console.log('materiaUrl:' + formData.materiaUrl);
+    if (formData.materiaUrl != '') {
+      let fileJsonArray = JSON.parse(formData.materiaUrl);
+      formData.name = fileJsonArray[0].fileName;
+      // formData.materialSuffix =
+      formData.size = fileJsonArray[0].fileSize;
+    }
+  }
+
   /**
    * 新增
    */
@@ -163,6 +177,7 @@
 
 
   defineExpose({
+    handelChange,
     add,
     edit,
     submitForm,
