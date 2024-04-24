@@ -9,7 +9,7 @@
         </a-col>
         <a-col :span="12">
           <a-form-item label="材料" v-bind="validateInfos.materiaUrl">
-	          <j-upload @change=handelChange v-model:value="formData.materiaUrl" :maxCount=1 :returnUrl=false :disabled="disabled" ></j-upload>
+	          <j-upload @change=handelChange @update:value=handelUpdate v-model:value="formData.materiaUrl" :maxCount=1 :returnUrl=false :disabled="disabled" ></j-upload>
           </a-form-item>
         </a-col>
         <a-col :span="12">
@@ -99,14 +99,28 @@
   /**
    * change
    */
-  function handelChange() {
-    console.log('materiaUrl:' + formData.materiaUrl);
-    if (formData.materiaUrl != '') {
-      let fileJsonArray = JSON.parse(formData.materiaUrl);
-      formData.name = fileJsonArray[0].fileName;
-      // formData.materialSuffix =
-      formData.size = fileJsonArray[0].fileSize;
-    }
+  function handelChange(jsonStr: string) {
+      try {
+          let fileJsonArray = JSON.parse(jsonStr);
+          const fileName = String(fileJsonArray[0].fileName);
+          formData.name = fileName.substring(0, fileName.lastIndexOf("."));
+          formData.materiaUrl = fileJsonArray[0].filePath;
+          console.log("formData.materiaUrl=[%s]", formData.materiaUrl);
+          formData.materialSuffix = fileName.split(".").pop();
+          formData.size = fileJsonArray[0].fileSize;
+      } catch (e) {
+          console.log("jsonStr=[%s]解析失败", jsonStr)
+      }
+  }
+
+  function handelUpdate(jsonStr: string) {
+      try {
+          let fileJsonArray = JSON.parse(jsonStr);
+          formData.materiaUrl = fileJsonArray[0].filePath;
+          console.log("formData.materiaUrl=[%s]", formData.materiaUrl);
+      } catch (e) {
+          console.log("jsonStr=[%s]解析失败", jsonStr)
+      }
   }
 
   /**
@@ -177,7 +191,6 @@
 
 
   defineExpose({
-    handelChange,
     add,
     edit,
     submitForm,
