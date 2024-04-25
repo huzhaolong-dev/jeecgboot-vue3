@@ -1,5 +1,36 @@
 <template>
  <div class="p-2">
+   <!--查询区域-->
+   <div class="jeecg-basic-table-form-container">
+     <a-form ref="formRef" @keyup.enter.native="searchQuery" :model="queryParam" :label-col="labelCol" :wrapper-col="wrapperCol">
+       <a-row :gutter="24">
+         <a-col :lg="6">
+           <a-form-item name="name">
+             <template #label><span title="名称">名称</span></template>
+             <a-input placeholder="请输入名称" v-model:value="queryParam.name"></a-input>
+           </a-form-item>
+         </a-col>
+         <a-col :lg="6">
+           <a-form-item name="materialType">
+             <template #label><span title="材料类型">材料类型</span></template>
+             <j-dict-select-tag placeholder="请选择材料类型" v-model:value="queryParam.materialType" dictCode="material_type" />
+           </a-form-item>
+         </a-col>
+         <a-col :xl="6" :lg="7" :md="8" :sm="24">
+            <span style="float: left; overflow: hidden" class="table-page-search-submitButtons">
+              <a-col :lg="6">
+                <a-button type="primary" preIcon="ant-design:search-outlined" @click="searchQuery">查询</a-button>
+                <a-button type="primary" preIcon="ant-design:reload-outlined" @click="searchReset" style="margin-left: 8px">重置</a-button>
+                <a @click="toggleSearchStatus = !toggleSearchStatus" style="margin-left: 8px">
+                  {{ toggleSearchStatus ? '收起' : '展开' }}
+                  <Icon :icon="toggleSearchStatus ? 'ant-design:up-outlined' : 'ant-design:down-outlined'" />
+                </a>
+              </a-col>
+            </span>
+         </a-col>
+       </a-row>
+     </a-form>
+   </div>
     <!--引用表格-->
     <BasicTable @register="registerTable" :rowSelection="rowSelection">
       <!--插槽:table标题-->
@@ -49,6 +80,7 @@
   import { isEmpty } from "/@/utils/is";
   import { useMessage } from '/@/hooks/web/useMessage';
   import { downloadFile } from '/@/utils/common/renderUtils';
+  import JDictSelectTag from "@/components/Form/src/jeecg/components/JDictSelectTag.vue";
   
   const toggleSearchStatus = ref<boolean>(false);
   //接收主表id
@@ -98,7 +130,7 @@
     xs: 24,
     sm: 20,
   });
-  
+
   /**
    * 新增事件
    */
@@ -178,7 +210,14 @@
       },
     ];
   }
-  
+
+  /**
+   * 查询
+   */
+  function searchQuery() {
+    reload();
+  }
+
   /**
    * 重置
    */
