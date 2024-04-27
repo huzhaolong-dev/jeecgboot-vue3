@@ -158,7 +158,11 @@
                 }
                 //update-end---author:wangshuai ---date:20221124  for：[issues/215]列表页查询框（日期选择框）设置初始时间，一进入页面时，后台报日期转换类型错误的------------
               });
-              schema.defaultValue = def;
+              // update-begin--author:liaozhiyang---date:20240328---for：【issues/1114】rangepicker等时间控件报错（vue3.4以上版本有问题）
+              def.forEach((item, index) => {
+                defaultValue[index] = item;
+              });
+              // update-end--author:liaozhiyang---date:20240328---for：【issues/1114】rangepicker等时间控件报错（vue3.4以上版本有问题）
             }
           }
         }

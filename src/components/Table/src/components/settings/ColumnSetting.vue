@@ -1,5 +1,5 @@
 <template>
-  <Tooltip placement="top" v-bind="getBindProps">
+  <Tooltip placement="top" v-bind="getBindProps" >
     <template #title>
       <span>{{ t('component.table.settingColumn') }}</span>
     </template>
@@ -508,8 +508,11 @@
       }
 
       .ant-checkbox-group {
-        width: 100%;
+        // update-begin--author:liaozhiyang---date:20240118---for：【QQYUN-7887】表格列设置宽度过长
+        // width: 100%;
         min-width: 260px;
+        max-width: min-content;
+        // update-end--author:liaozhiyang---date:20240118---for：【QQYUN-7887】表格列设置宽度过长
         // flex-wrap: wrap;
       }
 
