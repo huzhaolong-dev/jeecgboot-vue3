@@ -9,7 +9,7 @@
         </a-col>
         <a-col :span="12">
           <a-form-item label="材料" v-bind="validateInfos.materiaUrl">
-	          <j-upload @change=handelChange @update:value=handelUpdate v-model:value="formData.materiaUrl" :maxCount=1 :returnUrl=false :disabled="disabled" ></j-upload>
+	          <j-upload @change=handelChange v-model:value="formData.materiaFile" :maxCount=1 :returnUrl=false :disabled="disabled" ></j-upload>
           </a-form-item>
         </a-col>
         <a-col :span="12">
@@ -56,7 +56,6 @@
   import { getValueType } from '/@/utils';
   import { studentMaterialSaveOrUpdate } from '../Student.api';
   import { Form } from 'ant-design-vue';
-  import {propTypes} from "@/utils/propTypes";
 
   //接收主表id
   const mainId = inject('mainId');
@@ -66,6 +65,7 @@
   const formData = reactive<Record<string, any>>({
     id: '',
         name: '',
+        materiaFile:'[]',
         materiaUrl: '',   
         materialType: '',   
         materialSuffix: '',   
@@ -105,19 +105,8 @@
           const fileName = String(fileJsonArray[0].fileName);
           formData.name = fileName.substring(0, fileName.lastIndexOf("."));
           formData.materiaUrl = fileJsonArray[0].filePath;
-          console.log("formData.materiaUrl=[%s]", formData.materiaUrl);
           formData.materialSuffix = fileName.split(".").pop();
           formData.size = fileJsonArray[0].fileSize;
-      } catch (e) {
-          console.log("jsonStr=[%s]解析失败", jsonStr)
-      }
-  }
-
-  function handelUpdate(jsonStr: string) {
-      try {
-          let fileJsonArray = JSON.parse(jsonStr);
-          formData.materiaUrl = fileJsonArray[0].filePath;
-          console.log("formData.materiaUrl=[%s]", formData.materiaUrl);
       } catch (e) {
           console.log("jsonStr=[%s]解析失败", jsonStr)
       }
@@ -138,12 +127,22 @@
       resetFields();
       const tmpData = {};
       Object.keys(formData).forEach((key) => {
-        if(record.hasOwnProperty(key)){
-          tmpData[key] = record[key]
+        if (record.hasOwnProperty(key)) {
+          tmpData[key] = record[key];
         }
-      })
+      });
+      if (record.hasOwnProperty('id')) {
+        let fileList: any[] = [];
+        let fileJson = {
+          fileName: tmpData['name'] + '.' + tmpData['materialSuffix'],
+          filePath: tmpData['materiaUrl'],
+          fileSize: tmpData['size'],
+        };
+        fileList.push(fileJson);
+        tmpData['materiaFile'] = JSON.stringify(fileList);
+      }
       //赋值
-      Object.assign(formData,tmpData);
+      Object.assign(formData, tmpData);
     });
   }
 
